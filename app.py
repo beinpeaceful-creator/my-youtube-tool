@@ -24,7 +24,6 @@ def get_channel_id(url):
 
 def get_trending_videos(channel_urls):
     all_videos = []
-    # --- 76시간(3일+4시간)으로 설정 ---
     time_threshold = datetime.now(timezone.utc) - timedelta(hours=76)
     
     for url in channel_urls:
@@ -35,7 +34,11 @@ def get_trending_videos(channel_urls):
         video_ids = []
         for item in res.get('items', []):
             if item['snippet']['type'] == 'upload':
-                pub_at = datetime.strptime(item['snippet']['publishedAt'], "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
+                # --- 에러 해결 구간 시작 ---
+                published_str = item['snippet']['publishedAt']
+                pub_at = pd.to_datetime(published_str).to_pydatetime()
+                # --- 에러 해결 구간 끝 ---
+                
                 if pub_at > time_threshold: 
                     video_ids.append(item['contentDetails']['upload']['videoId'])
         
