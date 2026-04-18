@@ -8,7 +8,8 @@ import re
 MY_PASSWORD = "my1234!" 
 API_KEY = "AIzaSyAzSS1UBeug7ljeDbsiihpzij0uij__HS0"
 # 본인의 구글 시트 주소를 아래 따옴표 안에 넣으세요
-MY_SHEET_URL = "https://docs.google.com/spreadsheets/d/194LW8FumvdaREqFZEwYZyeOTcy2U5sm6oTLKMY9yq2A/edit?usp=sharing"
+MY_SHEET_URL = "https://docs.google.com/spreadsheets/d/194LW8FumvdaREqFZEwYZyeOTcy2U5sm6oTLKMY9yq2A/export?format=csv
+"
 
 youtube = build('youtube', 'v3', developerKey=API_KEY)
 
